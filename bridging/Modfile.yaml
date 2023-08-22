@@ -16,12 +16,6 @@ dependencies:
           valueSuffix: ":1883" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2820 solution
           services:
             - mgw-mqtt-dc
-        #TODO: replace with https://tickets.infai.org/browse/SNRGY-2821 solution
-        - refVar: MQTT_BROKER
-          valuePrefix: "tcp://" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2820 solution
-          valueSuffix: ":1883" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2820 solution
-          services:
-            - mgw-mqtt-dc
 services:
   mgw-mqtt-dc:
     name: mgw-mqtt-dc
@@ -39,42 +33,40 @@ secrets:
         services:
           - mgw-mqtt-dc
 configs:
-  ## broker config by dependency
-  #  mqttBroker:
-  #    dataType: string
-  #    value: "tcp://message-broker:1883" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2821 solution
-  #    targets:
-  #      - refVar: MQTT_BROKER
-  #        services:
-  #          - mgw-mqtt-dc
-  #    userInput:
-  #      type: text
-  #      name: MQTT Broker
-  #      description: "e.g. tcp://message-broker:1883"
-  #      group: mqtt
-  ## credentials are empty
-  #  mqttUsername:
-  #    dataType: string
-  #    optional: true
-  #    targets:
-  #      - refVar: MQTT_USER
-  #        services:
-  #          - mgw-mqtt-dc
-  #    userInput:
-  #      type: text
-  #      name: MQTT Username
-  #      group: mqtt
-  #  mqttPassword:
-  #    dataType: string
-  #    optional: true
-  #    targets:
-  #      - refVar: MQTT_PW
-  #        services:
-  #          - mgw-mqtt-dc
-  #    userInput:
-  #      type: text
-  #      name: MQTT Password
-  #      group: mqtt
+  mqttBroker:
+    dataType: string
+    value: "tcp://message-broker:1883" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2821 solution
+    targets:
+      - refVar: MQTT_BROKER
+        services:
+          - mgw-mqtt-dc
+    userInput:
+      type: text
+      name: MQTT Broker
+      description: "e.g. tcp://message-broker:1883"
+      group: mqtt
+  mqttUsername:
+    dataType: string
+    optional: true
+    targets:
+      - refVar: MQTT_USER
+        services:
+          - mgw-mqtt-dc
+    userInput:
+      type: text
+      name: MQTT Username
+      group: mqtt
+  mqttPassword:
+    dataType: string
+    optional: true
+    targets:
+      - refVar: MQTT_PW
+        services:
+          - mgw-mqtt-dc
+    userInput:
+      type: text
+      name: MQTT Password
+      group: mqtt
   mqttCmdClientId:
     dataType: string
     value: "mgw-mqtt-dc-cmd"
