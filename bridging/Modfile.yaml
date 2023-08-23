@@ -17,7 +17,7 @@ dependencies:
 services:
   mgw-mqtt-dc:
     name: mgw-mqtt-dc
-    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.1
+    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.2
 secrets:
   auth:
     type: basic-auth
