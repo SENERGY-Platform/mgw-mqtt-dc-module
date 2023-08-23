@@ -30,6 +30,8 @@ secrets:
         item: password
         services:
           - mgw-mqtt-dc
+    userInput:
+      name: Auth Credentials
 configs:
   mqttBroker:
     dataType: string
