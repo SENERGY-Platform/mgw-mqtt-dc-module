@@ -12,14 +12,9 @@ dependencies:
     requiredServices:
       server:
         - refVar: MGW_MQTT_BROKER
-          valuePrefix: "tcp://" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2820 solution
-          valueSuffix: ":1883" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2820 solution
           services:
             - mgw-mqtt-dc
-        #TODO: replace with https://tickets.infai.org/browse/SNRGY-2821 solution
         - refVar: MQTT_BROKER
-          valuePrefix: "tcp://" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2820 solution
-          valueSuffix: ":1883" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2820 solution
           services:
             - mgw-mqtt-dc
 services:
@@ -42,7 +37,7 @@ configs:
   ## broker config by dependency
   #  mqttBroker:
   #    dataType: string
-  #    value: "tcp://message-broker:1883" #TODO: replace with https://tickets.infai.org/browse/SNRGY-2821 solution
+  #    value: "tcp://message-broker:1883"
   #    targets:
   #      - refVar: MQTT_BROKER
   #        services:
