@@ -5,20 +5,18 @@ version: v0.0.8
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
-# ref to mgw broker
-# TODO: replace with real mgw broker
 dependencies:
-  github.com/SENERGY-Platform/mgw-test-module-a:
-    version: <v3.0.0
+  github.com/SENERGY-Platform/mgw-mqtt-broker:
+    version: <v2.0.0
     requiredServices:
-      server:
+      broker:
         - refVar: MGW_MQTT_BROKER
           services:
             - mgw-mqtt-dc
 services:
   mgw-mqtt-dc:
     name: mgw-mqtt-dc
-    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.2
+    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.3
 secrets:
   auth:
     type: basic-auth
