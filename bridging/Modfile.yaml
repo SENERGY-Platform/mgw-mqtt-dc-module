@@ -1,7 +1,7 @@
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-mqtt-dc-module/bridging
 name: Mqtt Device-Connector
-version: v0.0.16
+version: v0.0.17
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -189,7 +189,5 @@ configs:
 inputGroups: 
   mqtt:
     name: "MQTT"
-  mgw:
-    name: "MGW"
   platform:
     name: "Platform"
