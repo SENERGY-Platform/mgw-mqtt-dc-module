@@ -1,7 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/SENERGY-Platform/mgw-modfile-lib/main/schema/v1.json
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-mqtt-dc-module/bridging
-name: Mqtt Device-Connector
-version: v0.0.19
+name: Mqtt Device-Connector (Bridging)
+version: v0.0.20
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -17,7 +18,7 @@ dependencies:
 services:
   mgw-mqtt-dc:
     name: mgw-mqtt-dc
-    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.20
+    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.22
 secrets:
   auth:
     type: basic-auth
@@ -31,7 +32,18 @@ secrets:
         services:
           - mgw-mqtt-dc
     userInput:
-      name: Auth Credentials
+      name: Cloud Credentials
+  mqtt-credentials:
+    type: basic-auth
+    targets:
+      - refVar: MQTT_USER
+        item: username
+        services:
+          - mgw-mqtt-dc
+      - refVar: MQTT_PW
+        item: password
+        services:
+          - mgw-mqtt-dc
 configs:
   mqttBroker:
     dataType: string
@@ -44,28 +56,6 @@ configs:
       type: text
       name: MQTT Broker
       description: "e.g. tcp://message-broker:1883"
-      group: mqtt
-  mqttUsername:
-    dataType: string
-    optional: true
-    targets:
-      - refVar: MQTT_USER
-        services:
-          - mgw-mqtt-dc
-    userInput:
-      type: text
-      name: MQTT Username
-      group: mqtt
-  mqttPassword:
-    dataType: string
-    optional: true
-    targets:
-      - refVar: MQTT_PW
-        services:
-          - mgw-mqtt-dc
-    userInput:
-      type: text
-      name: MQTT Password
       group: mqtt
   mqttCmdClientId:
     dataType: string
@@ -89,6 +79,17 @@ configs:
       type: text
       name: MQTT ClientID CMD
       group: mqtt
+  mqttSkipVerify:
+    dataType: string
+    value: "false"
+    userInput:
+      name: Skip Certificate Verification
+      type: text
+      group: mqtt
+    targets:
+      - refVar: MQTT_INSECURE_SKIP_VERIFY
+        services:
+          - mgw-mqtt-dc
 ## mgw broker config by dependency
 #  mgwMqttBroker:
 #    dataType: string
