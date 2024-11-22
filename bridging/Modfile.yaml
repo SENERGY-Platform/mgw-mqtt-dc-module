@@ -2,7 +2,7 @@
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-mqtt-dc-module/bridging
 name: Mqtt Device-Connector (Bridging)
-version: v0.0.21
+version: v0.0.22
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -33,6 +33,7 @@ secrets:
           - mgw-mqtt-dc
     userInput:
       name: Cloud Credentials
+      group: platform
   mqtt-credentials:
     optional: true
     type: basic-auth
@@ -47,6 +48,7 @@ secrets:
           - mgw-mqtt-dc
     userInput:
       name: MQTT Credentials
+      group: mqtt
 configs:
   mqttBroker:
     dataType: string

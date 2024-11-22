@@ -1,7 +1,7 @@
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-mqtt-dc-module
 name: Mqtt Device-Connector
-version: v0.0.20
+version: v0.0.22
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -36,6 +36,7 @@ secrets:
           - mgw-mqtt-dc
     userInput:
       name: Auth Credentials
+      group: platform
 configs:
   ## broker config by dependency
   #  mqttBroker:
