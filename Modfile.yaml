@@ -1,7 +1,7 @@
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-mqtt-dc-module
 name: Mqtt Device-Connector
-version: v0.0.22
+version: v0.0.23
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -21,7 +21,7 @@ dependencies:
 services:
   mgw-mqtt-dc:
     name: mgw-mqtt-dc
-    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.22
+    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.23
 secrets:
   auth:
     type: basic-auth
@@ -149,17 +149,6 @@ configs:
     userInput:
       type: text
       name: Auth URL
-      group: platform
-  permissionSearchUrl:
-    dataType: string
-    value: "https://api.senergy.infai.org/permissions/query"
-    targets:
-      - refVar: GENERATOR_PERMISSION_SEARCH_URL
-        services:
-          - mgw-mqtt-dc
-    userInput:
-      type: text
-      name: Permission Search URL
       group: platform
   deviceRepositoryUrl:
     dataType: string
