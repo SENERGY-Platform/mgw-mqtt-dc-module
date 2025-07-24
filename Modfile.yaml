@@ -1,11 +1,19 @@
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-mqtt-dc-module
 name: Mqtt Device-Connector
-version: v0.0.28
+version: v1.0.0
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
 dependencies:
+  github.com/SENERGY-Platform/mgw-cloud-proxy/mgw-module:
+    version: "<v1.0.0"
+    requiredServices:
+      gateway:
+        - refVar: GENERATOR_DEVICE_REPOSITORY_URL
+          template: "http://{ref}/device-repository"
+          services:
+            - mgw-mqtt-dc
   github.com/SENERGY-Platform/mgw-mqtt-broker:
     version: <v2.0.0
     requiredServices:
@@ -21,22 +29,7 @@ dependencies:
 services:
   mgw-mqtt-dc:
     name: mgw-mqtt-dc
-    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.27
-secrets:
-  auth:
-    type: basic-auth
-    targets:
-      - refVar: GENERATOR_AUTH_USERNAME
-        item: username
-        services:
-          - mgw-mqtt-dc
-      - refVar: GENERATOR_AUTH_PASSWORD
-        item: password
-        services:
-          - mgw-mqtt-dc
-    userInput:
-      name: Auth Credentials
-      group: platform
+    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.32
 configs:
   ## broker config by dependency
   #  mqttBroker:
@@ -139,28 +132,6 @@ configs:
       - refVar: MGW_MQTT_CLIENT_ID
         services:
           - mgw-mqtt-dc
-  authUrl:
-    dataType: string
-    value: "https://auth.senergy.infai.org"
-    targets:
-      - refVar: GENERATOR_AUTH_ENDPOINT
-        services:
-          - mgw-mqtt-dc
-    userInput:
-      type: text
-      name: Auth URL
-      group: platform
-  deviceRepositoryUrl:
-    dataType: string
-    value: "https://api.senergy.infai.org/device-repository"
-    targets:
-      - refVar: GENERATOR_DEVICE_REPOSITORY_URL
-        services:
-          - mgw-mqtt-dc
-    userInput:
-      type: text
-      name: Device Repository URL
-      group: platform
   generatorUse:
     dataType: string
     value: "true"
