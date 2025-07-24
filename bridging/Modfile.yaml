@@ -2,7 +2,7 @@
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-mqtt-dc-module/bridging
 name: Mqtt Device-Connector (Bridging)
-version: v1.0.0
+version: v1.0.1
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -13,6 +13,10 @@ dependencies:
       gateway:
         - refVar: GENERATOR_DEVICE_REPOSITORY_URL
           template: "http://{ref}/device-repository"
+          services:
+            - mgw-mqtt-dc
+        - refVar: GENERATOR_MGW_CERT_MANAGER_URL
+          template: "http://{ref}:8080/api"
           services:
             - mgw-mqtt-dc
   github.com/SENERGY-Platform/mgw-mqtt-broker:
@@ -26,7 +30,7 @@ dependencies:
 services:
   mgw-mqtt-dc:
     name: mgw-mqtt-dc
-    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.32
+    image: ghcr.io/senergy-platform/mgw-mqtt-dc:v1.0.34
 secrets:
   mqtt-credentials:
     optional: true
@@ -166,5 +170,3 @@ inputGroups:
     name: "MGW MQTT"
   remote-mqtt:
     name: "Remote MQTT"
-  platform:
-    name: "Platform"
